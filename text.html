@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_732107_8hzp99uacq9.css"/>
+        <script src="js/jquery1.12.4.js"></script>
+        <style type="text/css">
+            li {
+                list-style: none;
+                background-color: #1b1a1a;
+                color: #efefef;
+                line-height: 40px;
+                cursor: pointer;
+            }
+            li div:hover {
+                background-color: #000;
+                color: #fff;
+                box-shadow: 0 0 10px rgba(0,0,0,0.8);
+                text-shadow: 0 0 2px rgba(255,255,255,0.8);
+            }
+            ul {
+                padding-left: 0;
+                width: 300px;
+                overflow: hidden;
+            }
+            .first i {
+                margin-right: 4px;
+                font-size: 14px;
+            }
+            .second div {
+                padding-left: 28px;
+            }
+            .third div {
+                padding-left: 46px;
+            }
+            .second, .third {
+                display: none;
+            }
+            .qf {
+                float: right;
+                padding-right: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <ul class="first">
+            <li>
+                <div>一级菜单 <i class="qf qf-shop-plus"></i></div>
+                <ul class="second">
+                    <li>
+                        <div>二级菜单</div>
+                    </li>
+                    <li>
+                        <div>二级菜单</div>
+                    </li>
+                    <li>
+                        <div>二级菜单 <i class="qf qf-shop-plus"></i></div>
+                        <ul class="third">
+                            <li><div>三级菜单 </div></li>
+                            <li><div>三级菜单 </div></li>
+                            <li><div>三级菜单 </div></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <div> 一级菜单 <i class="qf qf-shop-plus"></i></div>
+                <ul class="second">
+                    <li>
+                        <div>二级菜单 <i class="qf qf-shop-plus"></i></div>
+                        <ul class="third">
+                            <li><div>三级菜单 </div></li>
+                            <li><div>三级菜单 </div></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- <script type="text/javascript" src="jquery.js" ></script> -->
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+        <script type="text/javascript">
+//给所点击的li添加点击事件，find()找到对所有对应的子元素，添加slideToggle()的方法，组织事件冒泡
+        $('.first>li').on('click',function(){
+            $(this).find('.second').slideToggle();
+            event.stopPropagation();
+        })
+        $('.second>li').on('click',function(){
+            $(this).find('.third').slideToggle();
+            event.stopPropagation();
+        })
+        $("li").on('click', function() {
+                event.stopPropagation();
+            })
+//替换类名，toggleClass()的方法iconfont的类名切换，以达到加号换减号的方法
+        $("li:has(ul)").on('click',function(){
+            var i = $(this).children('div').children('i');
+            i.toggleClass('qf-shop-plus').toggleClass('qf-shop-jianhaocu');
+        })
+        </script>
+    </body>
+</html>
